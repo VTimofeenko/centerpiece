@@ -7,5 +7,6 @@ pub mod gitmoji;
 pub mod resource_monitor;
 pub mod sway_windows;
 pub mod system;
+pub mod temp;
 pub mod utils;
 pub mod wifi;

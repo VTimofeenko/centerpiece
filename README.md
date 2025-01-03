@@ -285,6 +285,12 @@ You can specify alternative configuration locations through:
        enable: true
      system:
        enable: true
+     # Example settings for discussion in PR
+     temperature:
+       enable: true
+       components:
+         - sysinfo_label: "amdgpu edge"
+         - display_label: "gpu"
      wifi:
        enable: true
    ```
@@ -355,6 +361,13 @@ You can specify alternative configuration locations through:
                        };
                        system = {
                            enable = true;
+                       };
+                       # Example settings for discussion in PR
+                       temperature = {
+                           enable = true;
+                           components = [
+                             {sysinfo_label = "amdgpu edge"; display_label = "gpu";}
+                           ];
                        };
                        wifi = {
                            enable = true;

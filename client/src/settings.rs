@@ -116,6 +116,39 @@ pub struct GitRepositoriesPluginSettings {
     pub commands: Vec<Vec<String>>,
 }
 
+#[derive(Debug, Deserialize, PartialEq)]
+pub struct TemperatureEntry {
+    pub sysinfo_label: String,
+    pub display_label: String,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct TemperaturePluginSettings {
+    #[serde(default = "default_true")]
+    pub enable: bool,
+    #[serde(default = "Vec::new")]
+    pub components: Vec<TemperatureEntry>,
+}
+impl Default for TemperaturePluginSettings {
+    fn default() -> Self {
+        Self {
+            enable: true,
+            //components: Vec::new(),
+            //My settings:
+            components: vec![
+                TemperatureEntry {
+                    sysinfo_label: "amdgpu edge".to_string(),
+                    display_label: "gpu".to_string(),
+                },
+                TemperatureEntry {
+                    sysinfo_label: "cros_ec cpu@4c".to_string(),
+                    display_label: "cpu".to_string(),
+                },
+            ],
+        }
+    }
+}
+
 fn default_white() -> String {
     "#ffffff".into()
 }
@@ -287,6 +320,8 @@ pub struct PluginSettings {
     pub firefox_history: FirefoxHistoryPluginSettings,
     #[serde(default)]
     pub git_repositories: GitRepositoriesPluginSettings,
+    #[serde(default)]
+    pub temperature: TemperaturePluginSettings,
     #[serde(default)]
     pub gitmoji: GitmojiPluginSettings,
     #[serde(default)]

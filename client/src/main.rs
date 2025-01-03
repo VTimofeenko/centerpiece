@@ -227,6 +227,10 @@ fn subscription(_: &Centerpiece) -> iced::Subscription<Message> {
         >());
     }
 
+    if settings.plugin.temperature.enable {
+        subscriptions.push(crate::plugin::utils::spawn::<crate::plugin::temp::TempPlugin>());
+    }
+
     if settings.plugin.firefox_bookmarks.enable {
         subscriptions.push(crate::plugin::utils::spawn::<
             crate::plugin::firefox::bookmarks::BookmarksPlugin,
